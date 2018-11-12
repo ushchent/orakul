@@ -1,0 +1,33 @@
+body {
+    margin: 0 auto;
+    width: 80%;
+}
+p.caption {
+  margin-top: 0;
+}
+h1 {
+  margin-bottom: .1em;
+}
+nav li {
+  list-style: none;
+  float: left;
+  padding: .3em .5em .4em .5em;
+  margin: 0 .1em;
+  background-color: black;
+  color: white;
+}
+nav li.ready:hover {
+  cursor: pointer;
+}
+nav ul {
+  padding: 0;
+}
+nav .not_ready {
+  color: grey;
+}
+nav .active {
+  background-color: steelblue;
+}
+nav li.active:hover {
+    cursor: text;
+}
