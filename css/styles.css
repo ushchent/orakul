@@ -71,3 +71,10 @@ thead th {
   font-weight: normal;
   padding: .2em;
 }
+footer {
+	font-size: .8em;
+	color: grey;
+}
+footer p {
+	padding-top: 2em;
+}
