@@ -1,6 +1,6 @@
 body {
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
 }
 p.caption {
   margin-top: 0;
@@ -30,4 +30,44 @@ nav .active {
 }
 nav li.active:hover {
     cursor: text;
+}
+
+main {
+    margin-top: 5em;
+}
+
+/* Оформление таблицы */
+table {
+	border-collapse: collapse;
+
+}
+table tr {
+  border-top: 1px solid #DEE2DE;
+}
+
+tbody {
+  text-align: center;
+}
+tbody tr:hover:not(.active) {
+	background-color: #edf8e9; 
+    opacity: .8;
+}
+.text {
+    cursor: pointer;
+}
+.active {
+    background-color: #bae4b3;
+}
+table td:first-child, th:first-child {
+  text-align: left;
+}
+table caption {
+    text-align: right;
+    color: grey;
+    font-size: .8em;
+}
+thead th {
+  font-size: .9em;
+  font-weight: normal;
+  padding: .2em;
 }
