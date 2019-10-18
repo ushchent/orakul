@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Машинные предсказания судебных решений">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/index.js"></script>
     <title>Проект "Оракул"</title>
 <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
@@ -22,11 +24,32 @@
 <!-- /Yandex.Metrika counter -->
 </head>
 <body>
-    <iframe name="Orakul" src="https://obscure-brushlands-18914.herokuapp.com/"
-            width="1020"
-            height="780"
-            frameborder="0">
-    </iframe>
+<header>
+		<h1>Проект "Оракул"</h1>
+		<p>Машинная оценка рисков приказного производства в экономических судах</p>
+	</header>
+	<main>
+		<input type="text" id="vzyskatel" placeholder="Взыскатель"
+			oninput="handle_input(this.value, this.id)">
+		<div class="output" id="vzyskatel_output"></div>
+		<button id="calculate" type="submit"
+			onclick="calculate_risk()">Оценить</button>
+		<input id="dolzhnik" placeholder="Должник"
+				oninput="handle_input(this.value, this.id)">
+		<div class="output" id="dolzhnik_output"></div>
+		<div class="calculation"><p id="verdict"></p></div>
+	</main>
+	<footer>
+		<p>Сделано в dataШколе сообщества <a href="http://opendata.by">Открытые
+											  данные для Беларуси</a>.<br>
+			Источник данных: <a href="http://court.gov.by">Интернет-портал
+				судов общей юрисдикции Республики Беларусь.</a><br>
+			Репозиторий проекта: <a href="https://github.com/ushchent/orakul">
+				github.com/ushchent/orakul</a>.<br>
+			Статус проекта: Испытательная версия.<br>
+			Редактор проекта: Алексей Медвецкий, am@opendata.by.
+		</p>
+	</footer>
 </body>
 </html>
 
