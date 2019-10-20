@@ -1,3 +1,7 @@
+route_prefixes = {
+	"local": "http://localhost:5000/",
+    "heroku": "https://obscure-brushlands-18914.herokuapp.com/"
+}
 var input_id_map = {
 	"vzyskatel": "vzyskatel_output",
 	"dolzhnik": "dolzhnik_output"
@@ -26,24 +30,28 @@ var calculate_risk = () => {
 	did.dataset.hasOwnProperty("unp") ? dunp = did.dataset.unp : null;
 	var result_set = {"vunp": vunp, "dunp": dunp };
 	console.log("Result set: ", result_set);
-	fetch(`https://obscure-brushlands-18914.herokuapp.com/predict`, {
-		method: "POST",
-		credentials: "omit",
-		body: JSON.stringify(result_set),
-		cache: "no-cache",
-		headers: new Headers({
-			"content-type": "application/json",
-			"Access-Control-Allow-Origin": "*",
-			"Access-Control-Allow-Credentials": "true"
+	if (!result_set.vunp && !result_set.dunp) {
+		return;
+	} else {
+		fetch(route_prefixes["local"] + "predict", {
+			method: "POST",
+			credentials: "omit",
+			body: JSON.stringify(result_set),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json",
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Credentials": "true"
+			})
 		})
-	})
-	.then(response => { 
-			if (response.status !== 200) {
-				console.log("Wrong status.");
-			} else {
-				response.json().then(data => handle_result_output(data));
-			}	
-		})
+		.then(response => { 
+				if (response.status !== 200) {
+					console.log("Wrong status.");
+				} else {
+					response.json().then(data => handle_result_output(data));
+				}	
+			})
+	}
 }
 var handle_list_item_click = (list_item) => {
 	var title = list_item.target.textContent;
@@ -75,7 +83,7 @@ var handle_output = (response, output_id) => {
 var handle_input = (value, id) => {
 	if (value.length > 4) {
 		var title = {"title": value};
-		fetch(`https://obscure-brushlands-18914.herokuapp.com/title`, {
+		fetch(route_prefixes["local"] + "title", {
 			method: "POST",
 			credentials: "omit",
 			body: JSON.stringify(title),
