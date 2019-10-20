@@ -30,12 +30,12 @@
 	</header>
 	<main>
 		<input type="text" id="vzyskatel" placeholder="Взыскатель"
-			oninput="handle_input(this.value, this.id)">
+			autocomplete="off" oninput="handle_input(this.value, this.id)">
 		<div class="output" id="vzyskatel_output"></div>
+		<input id="dolzhnik" placeholder="Должник"
+			autocomplete="off" oninput="handle_input(this.value, this.id)">
 		<button id="calculate" type="submit"
 			onclick="calculate_risk()">Оценить</button>
-		<input id="dolzhnik" placeholder="Должник"
-				oninput="handle_input(this.value, this.id)">
 		<div class="output" id="dolzhnik_output"></div>
 		<div class="calculation"><p id="verdict"></p></div>
 	</main>
