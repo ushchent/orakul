@@ -33,7 +33,7 @@ var calculate_risk = () => {
 	if (!result_set.vunp && !result_set.dunp) {
 		return;
 	} else {
-		fetch(route_prefixes["local"] + "predict", {
+		fetch(route_prefixes["heroku"] + "predict", {
 			method: "POST",
 			credentials: "omit",
 			body: JSON.stringify(result_set),
@@ -83,7 +83,7 @@ var handle_output = (response, output_id) => {
 var handle_input = (value, id) => {
 	if (value.length > 4) {
 		var title = {"title": value};
-		fetch(route_prefixes["local"] + "title", {
+		fetch(route_prefixes["heroku"] + "title", {
 			method: "POST",
 			credentials: "omit",
 			body: JSON.stringify(title),
