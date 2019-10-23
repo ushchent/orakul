@@ -1,4 +1,4 @@
-route_prefixes = {
+var route_prefixes = {
 	"local": "http://localhost:5000/",
     "heroku": "https://obscure-brushlands-18914.herokuapp.com/"
 }
@@ -33,15 +33,16 @@ var calculate_risk = () => {
 	if (!result_set.vunp && !result_set.dunp) {
 		return;
 	} else {
-		fetch(route_prefixes["heroku"] + "predict", {
+		sel_id("calculate").textContent = "Считаем...";
+		fetch(route_prefixes["local"] + "predict", {
 			method: "POST",
 			credentials: "omit",
 			body: JSON.stringify(result_set),
 			cache: "no-cache",
 			headers: new Headers({
 				"content-type": "application/json",
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Credentials": "true"
+				//"Access-Control-Allow-Origin": "*",
+				//"Access-Control-Allow-Credentials": "true"
 			})
 		})
 		.then(response => { 
@@ -49,6 +50,7 @@ var calculate_risk = () => {
 					console.log("Wrong status.");
 				} else {
 					response.json().then(data => handle_result_output(data));
+					sel_id("calculate").textContent = "Оценить";
 				}	
 			})
 	}
@@ -82,16 +84,16 @@ var handle_output = (response, output_id) => {
 }
 var handle_input = (value, id) => {
 	if (value.length > 4) {
-		var title = {"title": value};
-		fetch(route_prefixes["heroku"] + "title", {
+		var title = {"title": value.replace("-", " ")};
+		fetch(route_prefixes["local"] + "title", {
 			method: "POST",
 			credentials: "omit",
 			body: JSON.stringify(title),
 			cache: "no-cache",
 			headers: new Headers({
 				"content-type": "application/json",
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Credentials": "true"
+				//"Access-Control-Allow-Origin": "*",
+				//"Access-Control-Allow-Credentials": "true"
 			})
 		})
 		.then(response => { 
