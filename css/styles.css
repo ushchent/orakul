@@ -1,3 +1,6 @@
+body {
+	font-family: Sans;
+}
 header h1 {
 	margin-bottom: .2em ;
 }
@@ -16,8 +19,15 @@ input, button {
 
 input {
 	width: 100%;
+	padding: 1em .2em;
 }
-
+button {
+	border-radius: 0;
+	border: 0;
+	padding: .5em 1em;
+	background-color: #46326b;
+	color: white;
+}
 .output li {
 	list-style: none;
 }
@@ -25,6 +35,11 @@ input {
 	cursor: pointer;
 	color: green;
 }
+.output {
+	position: absolute;
+	background-color: white;
+}
+
 .hidden {
 	display: none;
 }
@@ -35,4 +50,7 @@ footer {
 }
 footer p {
 	padding-top: 2em;
+}
+footer a {
+	color: #6a51a3;
 }
