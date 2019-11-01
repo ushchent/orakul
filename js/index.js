@@ -22,6 +22,13 @@ var handle_result_output = result_set => {
 	target.innerText = verdict_string;
 }
 
+var wake_up = () => {
+	fetch(route_prefixes["heroku"] + "wakeup", {
+		method: "POST"
+	})
+	.then(response => console.log("Wake up: ", response.status))
+}
+
 var calculate_risk = () => {
 	var vid = sel_id("vzyskatel");
 	var did = sel_id("dolzhnik");
@@ -105,3 +112,6 @@ var handle_input = (value, id) => {
 		})
 	}
 }
+
+// Будим сервер при первой загрузке страницы
+wake_up();
