@@ -22,9 +22,15 @@ var handle_result_output = result_set => {
 	target.innerText = verdict_string;
 }
 
-var wake_up = () => {
-	fetch(route_prefixes["heroku"] + "wakeup", {
-		method: "POST"
+var wake_up = (title) => {
+	fetch(route_prefixes["heroku"] + "title", {
+		method: "POST",
+		credentials: "omit",
+		body: JSON.stringify({"title": title}),
+		cache: "no-cache",
+		headers: new Headers({
+				"content-type": "application/json",
+		})
 	})
 	.then(response => console.log("Wake up: ", response.status))
 }
@@ -114,4 +120,4 @@ var handle_input = (value, id) => {
 }
 
 // Будим сервер при первой загрузке страницы
-wake_up();
+wake_up("Минскхлебпром транс");
