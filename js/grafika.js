@@ -60,6 +60,7 @@ d3.json("data/data.json")
 
 		selector.on("change",  function() {
 			let value = d3.select(this).node().value;
+			redraw_chart(Object.entries(data.line[value]));
 			console.log(value);
 		});
 		const svg = d3.select("#grafika")
@@ -79,5 +80,5 @@ d3.json("data/data.json")
 			.attr("transform", "translate(0,0)")
 			.append("path");
 
-		redraw_chart(Object.entries(data.line["170"]));
+		redraw_chart(Object.entries(data.line[Object.entries(data.options)[0][0]]));
 		})
