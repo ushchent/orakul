@@ -6,7 +6,9 @@
     <meta name="description" content="Машинные предсказания судебных решений">
     <link rel="icon" href=img/favicon.png">
     <link href="css/styles.css" rel="stylesheet" type="text/css">
+	<!--
     <script src="js/index.js"></script>
+	--!>
     <title>Проект "Оракул"</title>
 <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
@@ -30,16 +32,18 @@
 		<p>Машинная оценка рисков приказного производства в экономических судах</p>
 	</header>
 	<main>
-		<img src="img/stats_all.png">
-		<input type="text" id="vzyskatel" placeholder="Взыскатель"
-			autocomplete="off" oninput="handle_input(this.value, this.id)">
-		<div class="output" id="vzyskatel_output"></div>
-		<input id="dolzhnik" placeholder="Должник"
-			autocomplete="off" oninput="handle_input(this.value, this.id)">
-		<div class="output" id="dolzhnik_output"></div>
-		<button id="calculate" type="submit"
-			onclick="calculate_risk()">Оценить</button>
-		<p class="calculation" id="verdict"></p>
+		<div id="grafika"></div>
+		<div id="predictor">
+			<input type="text" id="vzyskatel" placeholder="Взыскатель"
+				autocomplete="off" oninput="handle_input(this.value, this.id)">
+			<div class="output" id="vzyskatel_output"></div>
+			<input id="dolzhnik" placeholder="Должник"
+				autocomplete="off" oninput="handle_input(this.value, this.id)">
+			<div class="output" id="dolzhnik_output"></div>
+			<button id="calculate" type="submit"
+				onclick="calculate_risk()">Оценить</button>
+			<p class="calculation" id="verdict"></p>
+		</div>
 	</main>
 	<footer>
 		<p>Сделано в dataШколе сообщества <a href="http://opendata.by">Открытые
@@ -52,6 +56,8 @@
 			Редактор проекта: Алексей Медвецкий, am@opendata.by.
 		</p>
 	</footer>
+	<script src="js/d3.v6.min.js"></script>
+	<script src="js/grafika.js"></script>
 </body>
 </html>
 

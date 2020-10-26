@@ -12,6 +12,19 @@ main {
 	margin-top: 2em;
 	padding-right: 2em;
 }
+.axis path, .axis line {
+  fill: none;
+  stroke: black;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+.line_chart {
+
+  fill: none;
+  stroke: brown;
+  stroke-width: 1px;
+}
 input, button {
 	display: block;
 	margin: 1em 0;
@@ -54,3 +67,4 @@ footer p {
 footer a {
 	color: #6a51a3;
 }
+
