@@ -12,6 +12,11 @@ main {
 	margin-top: 2em;
 	padding-right: 2em;
 }
+.selector select {
+  	font-size: 1em;
+	background-color: white;
+	padding: .2em;
+}
 .axis path, .axis line {
   fill: none;
   stroke: black;
@@ -22,11 +27,11 @@ main {
 .line_chart {
 
   fill: none;
-  stroke: #46326b;
+  stroke: black;
   stroke-width: 1px;
 }
 .pie_legend text {
-	font-size: .8em;
+	font-size: .7em;
 }
 input, button {
 	display: block;

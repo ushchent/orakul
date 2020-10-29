@@ -1,8 +1,8 @@
 const margins = { top: 10, right: 30, bottom: 30, left: 50 };
-const height = 300 - margins.top - margins.bottom;
+const height = 250 - margins.top - margins.bottom;
 const width = 800 - margins.left - margins.right;
 
-const x_scale = d3.scaleTime().range([margins.left, width]);
+const x_scale = d3.scaleTime().range([margins.left, width / 1.3]);
 const y_scale = d3.scaleLinear().range([height, margins.bottom]);
 const x_axis = d3.axisBottom(x_scale).ticks(7);
 const y_axis = d3.axisLeft(y_scale).ticks(4);
@@ -48,11 +48,11 @@ const redraw_line_chart = data => {
 
 const redraw_pie_chart = data => {
 	// Пирожковая диаграмма
-	const verdict_map = {0: "Отказано в вынесении", 1: "Вынесен судебный приказ"};
+	const verdict_map = {0: "Отказано", 1: "Вынесен приказ"};
 	console.log("pie_data: ", data);
 	    const color = d3.scaleOrdinal()
                     .domain(Object.keys(data)) 
-                    .range(["#c2a5cf", "#008837"]);
+                    .range(["white", "black"]);
 
         const pie = d3.pie()(data.map(e => e[1]));
 	console.log("pie: ", pie);
@@ -71,15 +71,15 @@ const redraw_pie_chart = data => {
 			.enter()
             .append("path")
             .attr("fill", function(d, i) { return color(i); })
-            .attr("stroke", "white")
-            .attr("stroke-width", 2)
+           // .attr("stroke", "white")
+            //.attr("stroke-width", 2)
             .attr("title", function(d) { return d.data; });
 		
 		arcs.transition()
 			.duration(1000)
 			.attr("d", arc_generator)
             .attr("fill", function(d, i) { return color(i); })
-            .attr("stroke", "white")
+            .attr("stroke", "black")
             .attr("stroke-width", 1)
             .attr("title", function(d) { return d.data; });
 
@@ -102,6 +102,7 @@ const redraw_pie_chart = data => {
         legend_circles.attr("cx", 125)
             .attr("cy", function(d, i) { return i * 20; })
             .attr("r", 5)
+			.attr("stroke", "black")
             .attr("fill", function(d, i) { return color(i); });
 
 		legend_circles.exit().remove();
@@ -122,6 +123,8 @@ d3.json("data/data.json")
 // Инициализация элементов графика. Отрисовка ч/з redraw_chart.
 	.then(function(data) { console.log(data);
 		const selector = d3.select("#grafika")
+			.append("div")
+			.attr("class", "selector")
 			.append("select");
 
 		selector.selectAll("option")
@@ -138,16 +141,17 @@ d3.json("data/data.json")
 			console.log(value);
 		});
 		const svg = d3.select("#grafika")
+					.append("div")
+					.attr("class", "chart")
 					.append("svg")
-					.attr("width", width + margins.left + margins.right)
+					.attr("width", width + margins.left * 2 + margins.right * 2)
 					.attr("height", height + margins.top + margins.bottom);
 		svg.append("g")
 			.attr("transform",
 				`translate( 0, ${height + margins.top} )`)
 			.attr("class", "x axis");
 		svg.append("g")
-			.attr("transform",
-				`translate( ${margins.left}, ${margins.top} )`)
+			.attr("transform", `translate(${margins.left}, ${margins.top})`)
 			.attr("class", "y axis");
 		svg.append("g")
 			.attr("class", "line_chart")
@@ -158,13 +162,13 @@ d3.json("data/data.json")
 			.attr("class", "pie_chart")
 			//.attr("width", "300")
 			//.attr("height", "300")
-			.attr("transform", "translate(400,0)");
+			.attr("transform", "translate(540,0)");
 		svg.select(".pie_chart")
 			.append("g")
 			.attr("class", "pie")
 			//.attr("width", "300")
 			//.attr("height", "300")
-			.attr("transform", "translate(150, 150)")
+			.attr("transform", "translate(125, 125)")
 			.selectAll("path")
 			.data(Object.entries(data.pie[Object.entries(data.options)[0][0]]))
 			.enter()
@@ -173,7 +177,7 @@ d3.json("data/data.json")
 		svg.select(".pie_chart")
 			.append("g")
 			.attr("class", "pie_legend")
-			.attr("transform", "translate(125, 60)");
+			.attr("transform", "translate(100, 60)");
 		
 		redraw_line_chart(Object.entries(data.line[Object.entries(data.options)[0][0]]));
 		redraw_pie_chart(Object.entries(data.pie[Object.entries(data.options)[0][0]]));
