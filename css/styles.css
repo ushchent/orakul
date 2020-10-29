@@ -22,8 +22,11 @@ main {
 .line_chart {
 
   fill: none;
-  stroke: brown;
+  stroke: #46326b;
   stroke-width: 1px;
+}
+.pie_legend text {
+	font-size: .8em;
 }
 input, button {
 	display: block;
